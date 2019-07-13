@@ -6,6 +6,18 @@ from optimization.optimize import build_tensorflow
 from common import settings_reader, io, model_builder, optimizer_parameter_parser, evaluation, auxilliaries
 from model import Model
 import numpy as np
+import os
+
+file_path = os.path.dirname(__file__)
+setting_path=os.path.join(file_path,'../settings/complex.exp')
+dataset_path=os.path.join(file_path,'../data/Toy')
+subject_path=os.path.join(file_path,'../dumps/subject.valid')
+object_path=os.path.join(file_path,'../dumps/object.valid')
+
+parser = argparse.ArgumentParser(description="Train a model on a given dataset.")
+args = parser.parse_args()
+args.dataset=dataset_path
+args.settings=setting_path
 
 parser = argparse.ArgumentParser(description="Train a model on a given dataset.")
 parser.add_argument("--settings", help="Filepath for settings file.", required=True)
@@ -14,8 +26,6 @@ args = parser.parse_args()
 
 settings = settings_reader.read(args.settings)
 print(settings)
-
-
 
 '''
 Load datasets:
